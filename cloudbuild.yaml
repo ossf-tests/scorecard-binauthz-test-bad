@@ -18,6 +18,9 @@ steps:
       cat image-digest.txt
   - id: 'Attest to image'
     name: "gcr.io/gosst-scare-sandbox/scorecard-attestor:latest"
+    env:
+    - 'COMMIT_SHA=$COMMIT_SHA'
+    - 'REPO_NAME=$REPO_NAME'
     secretEnv:
     - GITHUB_AUTH_TOKEN
     entrypoint: /bin/bash
